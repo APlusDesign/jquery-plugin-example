@@ -12,12 +12,12 @@
        
        	this.publicMethod = function()
        	{
-           	$("#console").append('public method called! <br>');
+           	$("#console").append('<span>'+ obj.attr('id') + '</span>: public method called! <br>');
        	};
 
        	var privateMethod = function()
        	{
-           	$("#console").append('private method called!');
+           	$("#console").append('<span>'+ obj.attr('id') + '</span>: private method called! <br>');
        	};
    };
 

@@ -1,3 +1,25 @@
+// Document ready
+$(document).ready(function() {
+	// Initialise my plugin on my collection of objects
+	$('div.example-object').pluginName();
+	
+	// Access the plugin for a specific object
+	var myPluginReference = $('#example-object-1').data('pluginName');
+	
+	// Run a method in the plugin for that object
+	myPluginReference.publicMethod(); 
+	
+	// Example showing how private methods can't be accessed 
+	try
+	{
+		myPluginReference.privateMethod(); 
+	}
+	catch(err)
+	{	
+		$("#console").append('Attempted to call private method of <span>'+$('#example-object-1').attr('id') +'</span> but failed! <br />');
+	}
+});
+
 
 /**
  * @author Simon Ilett @ APlusDesign
@@ -19,13 +41,13 @@
 		// Public method - can be called from anywhere once you have the objects plugin reference
 		this.publicMethod = function()
 		{
-				$("#console").append('public method called! <br>');
+				$("#console").append('<span>'+ obj.attr('id') + '</span>: public method called! <br>');
 		};
 
 		// Private method - can only be called from within this object
 		var privateMethod = function()
 		{
-				$("#console").append('private method called!');
+				$("#console").append('<span>'+ obj.attr('id') + '</span>: private method called! <br>');
 		};
 	 };
 	 
