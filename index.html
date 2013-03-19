@@ -4,13 +4,29 @@
 	<title>jQuery selectBox (select replacement plugin)</title>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script type="text/javascript" src="script.js"></script>
+	<script>
+		// Document ready
+		$(document).ready(function() {
+			$('div.example-object').pluginName();
+			var myPluginReference = $('#example-object-1').data('pluginName');
+			myPluginReference.publicMethod(); 
+			try
+			{
+				myPluginReference.privateMethod(); 
+			}
+			catch(err)
+			{	
+				$("#console").append('Attempted to call private method but failed!');
+			}
+		});
+	</script>
 </head>
 <body>
 	<div id="console" style="width: 50%; font-family: 'Courier New', monospace; border: solid 2px #000; background: #000; color: #FFF; height: 350px; overflow: auto; padding: 10px; float: right;"></div>
 	
-	<div id="example-object-1" class="example-object">Just some random object</div>
+	<div id="example-object-1" class="example-object">Random object</div>
 	
-	<div id="example-object-2" class="example-object">Just some random object 2</div>
+	<div id="example-object-2" class="example-object">Random object 2</div>
 	
 </body>
 </html>
