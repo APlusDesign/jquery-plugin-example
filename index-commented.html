@@ -19,21 +19,35 @@
 		}
 	</style>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="script-commented.js"></script>
 	<script>
 		// Document ready
 		$(document).ready(function() {
 
+			// Initialise pluginName on my collection of objects, save collection
 			var collection = $('div.example-object').pluginName();
+
+			// Reference the plugin on an element in the DOM via Selector
 			var myPluginReference = $('#example-object-1').data('pluginName');
+
+			// Reference the plugin on an element via your original collection
 			var myPluginReference2 = $(collection[0]).data('pluginName');
 
+			// Run methods in the plugin via your references
 			myPluginReference.publicMethod();
 			myPluginReference2.publicMethod();
 
+			// Are these two references pointing to the same object
+			// Output = true
 			$("#console").append('Does "myPluginReference" === "myPluginReference2" :: <span>' + (myPluginReference === myPluginReference2) + '</span><br><br>');
 
+
+			// The plugin has a reference back to it's own object and can use all of jQuery's methods
 			// $("#console").append(myPluginReference.originalObject.attr('id') + '<br><br>');
+
+
+			// Example showing that private methods can't be accessed from the reference.
+			// output 'Attempted to call private method of example-object-1 but failed!'
 			try
 			{
 				myPluginReference.privateMethod();
@@ -42,6 +56,8 @@
 			{
 				$("#console").append('Attempted to call private method of <span>'+$('#example-object-1').attr('id') +'</span> but failed! <br>');
 			}
+
+			// Inspect the onject if you so wish.
 			console.log(myPluginReference);
 		});
 	</script>
@@ -50,6 +66,7 @@
 	<div id="console"></div>
 	<div id="example-object-1" class="example-object"></div>
 	<div id="example-object-2" class="example-object"></div>
+
 	<p>
 		See source code for $(document).ready script, output is in the console
 	</p>
